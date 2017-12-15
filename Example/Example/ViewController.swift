@@ -48,17 +48,7 @@ extension ViewController: UICollectionViewDelegate {
         guard let selectedCell = collectionView.cellForItem(at: indexPath) as? ImageCell else {
             return
         }
-        var slideLeafs = [SlideLeaf]()
-        for index in 0..<imageUrls.count {
-//            let leaf = SlideLeaf(image: UIImage(named: "keyaki\(index).jpg"),
-//                                 title: "ぺーちゃん\(index)号",
-//                                 caption: "君のハートにレボ⭐️リューション \(index)回目")
-//            let leaf = SlideLeaf(urlStr: imageUrls[index])
-            let leaf = SlideLeaf(urlStr: imageUrls[index],
-                                 title: "ぺーちゃん\(index)号",
-                                 caption: "君のハートにレボ⭐️リューション \(index)回目 君のハートにレボ⭐️リューション \(index)回目　君のハートにレボ⭐️リューション \(index)回目　君のハートにレボ⭐️リューション \(index)回目　君のハートにレボ⭐️リューション \(index)回目　君のハートにレボ⭐️リューション \(index)回目　君のハートにレボ⭐️リューション \(index)回目　君のハートにレボ⭐️リューション \(index)回目")
-            slideLeafs.append(leaf)
-        }
+        let slideLeafs: [SlideLeaf] = imageUrls.enumerated().map { SlideLeaf(urlStr: $0.1, title: "ぺーちゃん\($0.0)号", caption: "君のハートにレボ⭐️リューション \($0.0)回目") }
         let slideImageViewController = SlideLeafViewController.make(leafs: slideLeafs,
                                                                     startIndex: indexPath.row,
                                                                     fromImageView: selectedCell.imageView)

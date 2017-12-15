@@ -57,15 +57,6 @@ open class SlideLeafCell: UICollectionViewCell {
         imageView.addGestureRecognizer(longPressGesture)
     }
 
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        if let image = imageView.image {
-            scrollView.setZoomScale(1, animated: false)
-            calcImageViewFrame(image)
-        }
-    }
-
     open func configure(slideLeaf: SlideLeaf) {
         if let image = slideLeaf.image {
             setImage(image)
@@ -81,6 +72,15 @@ open class SlideLeafCell: UICollectionViewCell {
                 me.activityIndicatorView.stopAnimating()
                 me.activityIndicatorView.isHidden = true
             }
+        }
+    }
+
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+
+        if let image = imageView.image {
+            scrollView.setZoomScale(1, animated: false)
+            calcImageViewFrame(image)
         }
     }
 
@@ -101,7 +101,7 @@ open class SlideLeafCell: UICollectionViewCell {
         let screenSize = UIScreen.main.bounds.size
         let hRate = screenSize.height / imageHeight
         let wRate = screenSize.width / imageWidth
-        let rate = min(hRate, wRate, 1)
+        let rate = min(hRate, wRate)
         let imageViewSize = CGSize(width: imageWidth * rate, height: imageHeight * rate)
         imageView.frame.size = imageViewSize
         scrollView.contentSize = imageViewSize

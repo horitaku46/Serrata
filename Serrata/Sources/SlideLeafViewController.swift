@@ -95,6 +95,7 @@ fileprivate enum SlideLeafConst {
 
     private var isShouldAutorotate = true
     private var isPrefersHomeIndicatorAutoHidden = false
+
     private var serrataTransition = SerrataTransition.shared
 
     private var slideLeafs = [SlideLeaf]()
@@ -216,7 +217,6 @@ fileprivate enum SlideLeafConst {
                     self.rotationBlackImageView.alpha = 0
                     let height = self.view.frame.height
                     self.selectedCell.frame.origin.y = isScrollUp ? -height : height
-
                 }, completion: { _ in
                     self.serrataTransition.interactor.finish()
                 })

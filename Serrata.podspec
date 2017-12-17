@@ -24,10 +24,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = "Serrata/**/*"
-  s.resource_bundles = {
-      "Serrata" => ["Serrata/**/*"]
-  }
+  s.source_files = "Serrata/Sources/*.{swift}"
+  s.resources = "Serrata/**/*.{storyboard,xib,xcassets}"
 
   s.dependency "Kingfisher"
 end

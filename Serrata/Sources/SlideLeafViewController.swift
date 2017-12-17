@@ -39,7 +39,7 @@ fileprivate enum SlideLeafConst {
 
     @IBOutlet weak private var collectionView: UICollectionView! {
         didSet {
-            collectionView.register(UINib(nibName: "SlideLeafCell", bundle: nil), forCellWithReuseIdentifier: "SlideLeafCell")
+            collectionView.register(UINib(nibName: "SlideLeafCell", bundle: Bundle(for: SlideLeaf.self)), forCellWithReuseIdentifier: "SlideLeafCell")
             collectionView.isPagingEnabled = true
             collectionView.backgroundColor = .clear
             collectionView.showsHorizontalScrollIndicator = false
@@ -113,7 +113,7 @@ fileprivate enum SlideLeafConst {
     private var isDecideDissmiss = false
 
     open class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UIImageView? = nil) -> SlideLeafViewController {
-        let viewController = UIStoryboard(name: "SlideLeafViewController", bundle: nil)
+        let viewController = UIStoryboard(name: "SlideLeafViewController", bundle: Bundle(for: SlideLeafViewController.self))
             .instantiateViewController(withIdentifier: "SlideLeafViewController") as! SlideLeafViewController
         viewController.transitioningDelegate = viewController.serrataTransition
         viewController.slideLeafs = leafs

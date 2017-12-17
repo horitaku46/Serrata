@@ -34,8 +34,9 @@ open class ImageDetailView: UIView {
 
     @IBOutlet weak private var closeButton: UIButton! { // UIButtonType = custom
         didSet {
-            closeButton.setImage(UIImage(named: "close_cross"), for: .normal)
-            closeButton.setImage(UIImage(named: "close_cross"), for: .highlighted)
+            let closeImage = UIImage(named: "close_cross", in: Bundle(for: ImageDetailView.self), compatibleWith: nil)
+            closeButton.setImage(closeImage, for: .normal)
+            closeButton.setImage(closeImage, for: .highlighted)
             closeButton.layer.cornerRadius = closeButton.bounds.height / 2
             closeButton.backgroundColor = UIColor(white: 0, alpha: ImageDetailConst.maxAlpha)
         }

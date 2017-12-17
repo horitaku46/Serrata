@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 final class ImageCell: UICollectionViewCell {
 
@@ -17,8 +16,7 @@ final class ImageCell: UICollectionViewCell {
         }
     }
 
-    func configure(urlStr: String) {
-        imageView.kf.setImage(with: URL(string: urlStr),
-                              options: [.transition(.fade(0.2))])
+    func configure(image: UIImage) {
+        imageView.image = image
     }
 }

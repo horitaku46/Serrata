@@ -41,6 +41,7 @@ open class SlideLeafCell: UICollectionViewCell {
     lazy open var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isUserInteractionEnabled = true
+        imageView.alpha = 0
         return imageView
     }()
 
@@ -61,16 +62,15 @@ open class SlideLeafCell: UICollectionViewCell {
         if let image = slideLeaf.image {
             setImage(image)
 
-        } else if let url = slideLeaf.urlStr {
+        } else if let url = slideLeaf.urlString {
             activityIndicatorView.startAnimating()
             activityIndicatorView.isHidden = false
 
-            imageView.kf.setImage(with: URL(string: url),
-                                  options: [.transition(.fade(0.2))]) { [weak self] image, _, _, _ in
+            imageView.kf.setImage(with: URL(string: url)) { [weak self] image, _, _, _ in
                 guard let me = self, let image = image else { return }
-                me.setImage(image)
-                me.activityIndicatorView.stopAnimating()
                 me.activityIndicatorView.isHidden = true
+                me.activityIndicatorView.stopAnimating()
+                me.setImage(image)
             }
         }
     }
@@ -93,6 +93,10 @@ open class SlideLeafCell: UICollectionViewCell {
         imageView.image = image
         calcImageViewFrame(image)
         scrollView.addSubview(imageView)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.imageView.alpha = 1
+        }
     }
 
     private func calcImageViewFrame(_ image: UIImage) {

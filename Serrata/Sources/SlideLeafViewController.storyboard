@@ -13,7 +13,7 @@
         <!--Slide Leaf View Controller-->
         <scene sceneID="EvD-aw-ltv">
             <objects>
-                <viewController storyboardIdentifier="SlideLeafViewController" id="hjv-D4-Ilg" customClass="SlideLeafViewController" customModule="SerrataSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlideLeafViewController" id="hjv-D4-Ilg" customClass="SlideLeafViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J8l-v5-y5b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyP-lt-CrY" customClass="ImageDetailView" customModule="SerrataSample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyP-lt-CrY" customClass="ImageDetailView" customModule="Example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLH-7D-dNh">
@@ -46,19 +46,19 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WNM-hV-M60">
-                                        <rect key="frame" x="0.0" y="578" width="375" height="89"/>
+                                        <rect key="frame" x="0.0" y="507" width="375" height="160"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C2L-W2-EsC">
-                                                <rect key="frame" x="35" y="8" width="305" height="41"/>
+                                                <rect key="frame" x="35" y="8" width="305" height="112"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-MT-btV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-MT-btV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIm-kK-UB3">
-                                                        <rect key="frame" x="0.0" y="20.5" width="305" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIm-kK-UB3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="112"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYO-rm-PIy">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                                                 <connections>
                                                     <action selector="tapDetailButton:" destination="AyP-lt-CrY" eventType="touchUpInside" id="iSG-sr-ywL"/>
                                                 </connections>

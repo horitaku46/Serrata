@@ -8,9 +8,9 @@
 
 import UIKit
 
-private enum SlideLeafConst {
-    static let cellSpace: CGFloat = 20
-    static let cellBothEndSpace: CGFloat = cellSpace / 2
+fileprivate enum SlideLeafConst {
+    static let minimumLineSpacing: CGFloat = 20
+    static let cellBothEndSpacing: CGFloat = minimumLineSpacing / 2
 }
 
 @objc public protocol SlideLeafViewControllerDelegate: class {
@@ -53,13 +53,13 @@ private enum SlideLeafConst {
 
     @IBOutlet weak private var collectionViewLeadingConstraint: NSLayoutConstraint! { // default = 0
         didSet {
-            collectionViewLeadingConstraint.constant = -SlideLeafConst.cellBothEndSpace
+            collectionViewLeadingConstraint.constant = -SlideLeafConst.cellBothEndSpacing
         }
     }
 
     @IBOutlet weak private var collectionViewTrailingConstraint: NSLayoutConstraint! { // default = 0
         didSet {
-            collectionViewTrailingConstraint.constant = SlideLeafConst.cellBothEndSpace
+            collectionViewTrailingConstraint.constant = SlideLeafConst.cellBothEndSpacing
         }
     }
 
@@ -67,10 +67,10 @@ private enum SlideLeafConst {
         didSet {
             flowLayout.scrollDirection = .horizontal
             flowLayout.sectionInset = UIEdgeInsets(top: 0,
-                                                   left: SlideLeafConst.cellBothEndSpace,
+                                                   left: SlideLeafConst.cellBothEndSpacing,
                                                    bottom: 0,
-                                                   right: SlideLeafConst.cellBothEndSpace)
-            flowLayout.minimumLineSpacing = SlideLeafConst.cellSpace
+                                                   right: SlideLeafConst.cellBothEndSpacing)
+            flowLayout.minimumLineSpacing = SlideLeafConst.minimumLineSpacing
             flowLayout.minimumInteritemSpacing = 0
         }
     }
@@ -99,7 +99,7 @@ private enum SlideLeafConst {
     private var slideLeafs = [SlideLeaf]()
     private var pageIndex = 0
 
-    lazy private var setImageDetail: (() -> ())? = {
+    lazy private var firstSetImageDetail: (() -> ())? = {
         setPageIndexOffSet()
         setImageDetailText(pageIndex)
         return nil
@@ -114,7 +114,7 @@ private enum SlideLeafConst {
             .instantiateViewController(withIdentifier: "SlideLeafViewController") as! SlideLeafViewController
         viewController.transitioningDelegate = viewController.serrataTransition
         viewController.slideLeafs = leafs
-        viewController.pageIndex = startIndex
+        viewController.pageIndex = (leafs.count - 1) >= startIndex ? startIndex : 0
         viewController.serrataTransition.setFromImageView(fromImageView)
         return viewController
     }
@@ -136,7 +136,7 @@ private enum SlideLeafConst {
 
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setImageDetail?()
+        firstSetImageDetail?()
     }
 
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -156,14 +156,6 @@ private enum SlideLeafConst {
                 self.collectionView.isHidden = false
             }
         }
-    }
-
-    private func setPageIndexOffSet() {
-        let screenWidth = UIScreen.main.bounds.width
-        let newOffSetX = screenWidth * CGFloat(pageIndex)
-        let totalSpaceX = SlideLeafConst.cellSpace * CGFloat(pageIndex)
-        let newOffSet = CGPoint(x: newOffSetX + totalSpaceX, y: 0)
-        collectionView.setContentOffset(newOffSet, animated: false)
     }
 
     @IBAction private func handleTapGesture(_ sender: Any) {
@@ -235,10 +227,22 @@ private enum SlideLeafConst {
         }
     }
 
+    private func setPageIndexOffSet() {
+        let screenWidth = UIScreen.main.bounds.width
+        let newOffSetX = screenWidth * CGFloat(pageIndex)
+        let totalSpaceX = SlideLeafConst.minimumLineSpacing * CGFloat(pageIndex)
+        let newOffSet = CGPoint(x: newOffSetX + totalSpaceX, y: 0)
+        collectionView.setContentOffset(newOffSet, animated: false)
+    }
+
     private func setImageDetailText(_ pageIndex: Int) {
-        let title = slideLeafs[pageIndex].title
-        let caption = slideLeafs[pageIndex].caption
-        imageDetailView.setDetail(title, caption)
+        if slideLeafs.isEmpty {
+            dismiss(animated: true, completion: nil)
+        } else {
+            let title = slideLeafs[pageIndex].title
+            let caption = slideLeafs[pageIndex].caption
+            imageDetailView.setDetail(title, caption)
+        }
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-private enum ImageDetailConst {
+fileprivate enum ImageDetailConst {
     static let maxAlpha: CGFloat = 0.4
 
     static let fadeInCloseButtonTop: CGFloat = 35
@@ -79,7 +79,7 @@ open class ImageDetailView: UIView {
 
     open override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .clear
+        backgroundColor = .clear
     }
 
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

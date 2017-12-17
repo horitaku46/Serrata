@@ -11,7 +11,7 @@ import UIKit
 open class SlideLeaf: NSObject {
 
     open var image: UIImage?
-    open var urlStr: String?
+    open var urlString: String?
 
     open var title: String
     open var caption: String
@@ -22,8 +22,8 @@ open class SlideLeaf: NSObject {
         self.caption = caption
     }
 
-    public init(urlStr: String?, title: String = "", caption: String = "") {
-        self.urlStr = urlStr
+    public init(urlString: String?, title: String = "", caption: String = "") {
+        self.urlString = urlString;
         self.title = title
         self.caption = caption
     }

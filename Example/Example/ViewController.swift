@@ -33,7 +33,7 @@ final class ViewController: UIViewController {
 
         navigationItem.title = "Images"
 
-        for i in 0...19 {
+        for i in 0...29 {
             images.append(UIImage(named: "image\(i).jpg") ?? UIImage())
         }
     }
@@ -74,6 +74,14 @@ extension ViewController: SlideLeafViewControllerDelegate {
         print(slideLeafViewController)
         print(slideLeaf)
         print(pageIndex)
+    }
+
+    func slideLeafViewControllerDismissed(slideLeaf: SlideLeaf, pageIndex: Int) {
+        print(slideLeaf)
+        print(pageIndex)
+
+        let indexPath = IndexPath(row: pageIndex, section: 0)
+        self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
 }
 

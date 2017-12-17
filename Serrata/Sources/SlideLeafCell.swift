@@ -106,7 +106,7 @@ open class SlideLeafCell: UICollectionViewCell {
         let hRate = screenSize.height / imageHeight
         let wRate = screenSize.width / imageWidth
         let rate = min(hRate, wRate)
-        let imageViewSize = CGSize(width: imageWidth * rate, height: imageHeight * rate)
+        let imageViewSize = CGSize(width: floor(imageWidth * rate), height: floor(imageHeight * rate))
         imageView.frame.size = imageViewSize
         scrollView.contentSize = imageViewSize
         updateImageViewToCenter()

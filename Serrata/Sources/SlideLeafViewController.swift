@@ -16,6 +16,7 @@ fileprivate enum SlideLeafConst {
 @objc public protocol SlideLeafViewControllerDelegate: class {
     func tapImageDetailView(slideLeaf: SlideLeaf, pageIndex: Int)
     @objc func longPressImageView(slideLeafViewController: SlideLeafViewController, slideLeaf: SlideLeaf, pageIndex: Int)
+    @objc func slideLeafViewControllerDismissed(slideLeaf: SlideLeaf, pageIndex: Int)
 }
 
  open class SlideLeafViewController: UIViewController {
@@ -108,6 +109,7 @@ fileprivate enum SlideLeafConst {
     private var originPanImageViewCenterX: CGFloat = 0
     private var panImageViewCenterX: CGFloat = 0
     private var selectedCell = SlideLeafCell()
+    private var isDecideDissmiss = false
 
     open class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UIImageView? = nil) -> SlideLeafViewController {
         let viewController = UIStoryboard(name: "SlideLeafViewController", bundle: nil)
@@ -178,7 +180,13 @@ fileprivate enum SlideLeafConst {
                 selectedCell = cell
                 originPanImageViewCenterX = cell.imageView.center.y
                 serrataTransition.interactor.hasStarted = true
-                dismiss(animated: true, completion: nil)
+
+                dismiss(animated: true) {
+                    if self.isDecideDissmiss {
+                        let leaf = self.slideLeafs[self.pageIndex]
+                        self.delegate?.slideLeafViewControllerDismissed(slideLeaf: leaf, pageIndex: self.pageIndex)
+                    }
+                }
             }
 
         case .changed:
@@ -202,6 +210,7 @@ fileprivate enum SlideLeafConst {
 
             if velocityY > 800 {
                 view.isUserInteractionEnabled = false
+                isDecideDissmiss = true
 
                 UIView.animate(withDuration: 0.3, animations: {
                     self.rotationBlackImageView.alpha = 0
@@ -216,10 +225,10 @@ fileprivate enum SlideLeafConst {
                 serrataTransition.interactor.cancel()
                 imageDetailView.fadeIn()
 
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 0.3) {
                     self.rotationBlackImageView.alpha = 1
                     self.selectedCell.imageView.center.y = self.originPanImageViewCenterX
-                })
+                }
             }
 
         default:
@@ -275,7 +284,10 @@ extension SlideLeafViewController: SlideLeafCellDelegate {
 extension SlideLeafViewController: ImageDetailViewDelegate {
 
     open func tapCloseButton() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            let leaf = self.slideLeafs[self.pageIndex]
+            self.delegate?.slideLeafViewControllerDismissed(slideLeaf: leaf, pageIndex: self.pageIndex)
+        }
     }
 
     open func tapDetailView() {

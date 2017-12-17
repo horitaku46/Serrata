@@ -17,8 +17,7 @@
 		61FF1E3E1FE62E6300C44678 /* SerrataTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FF1E311FE62E6300C44678 /* SerrataTransition.swift */; };
 		61FF1E411FE62E6300C44678 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61FF1E361FE62E6300C44678 /* Images.xcassets */; };
 		61FF1E441FE632DC00C44678 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FF1E431FE632DC00C44678 /* Kingfisher.framework */; };
-		61FF1E481FE6350700C44678 /* Serrata.h in Headers */ = {isa = PBXBuildFile; fileRef = 61FF1E461FE6350700C44678 /* Serrata.h */; };
-		61FF1E491FE6350700C44678 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61FF1E471FE6350700C44678 /* Info.plist */; };
+		61FF1E481FE6350700C44678 /* Serrata.h in Headers */ = {isa = PBXBuildFile; fileRef = 61FF1E461FE6350700C44678 /* Serrata.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,7 +178,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61FF1E491FE6350700C44678 /* Info.plist in Resources */,
 				61FF1E381FE62E6300C44678 /* SlideLeafViewController.storyboard in Resources */,
 				61FF1E411FE62E6300C44678 /* Images.xcassets in Resources */,
 				61FF1E391FE62E6300C44678 /* SlideLeafCell.xib in Resources */,
@@ -350,7 +348,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Serrata/Supporting files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Serrata/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -376,7 +374,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Serrata/Supporting files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Serrata/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

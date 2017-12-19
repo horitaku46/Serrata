@@ -10,7 +10,7 @@ import UIKit
 
 final class ViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet weak private var collectionView: UICollectionView! {
         didSet {
             collectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
             collectionView.delegate = self
@@ -18,7 +18,7 @@ final class ViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout! {
+    @IBOutlet weak private var flowLayout: UICollectionViewFlowLayout! {
         didSet {
             flowLayout.scrollDirection = .vertical
             flowLayout.minimumLineSpacing = 1
@@ -51,10 +51,14 @@ extension ViewController: UICollectionViewDelegate {
             return
         }
 
-        let slideLeafs: [SlideLeaf] = images.enumerated().map { SlideLeaf(image: $0.1, title: "Image Title \($0.0)", caption: "Index is \($0.0)") }
+        let slideLeafs: [SlideLeaf] = images.enumerated().map { SlideLeaf(image: $0.1,
+                                                                          title: "Image Title \($0.0)",
+                                                                          caption: "Index is \($0.0)") }
+
         let slideImageViewController = SlideLeafViewController.make(leafs: slideLeafs,
                                                                     startIndex: indexPath.row,
                                                                     fromImageView: selectedCell.imageView)
+
         slideImageViewController.delegate = self
         present(slideImageViewController, animated: true, completion: nil)
     }

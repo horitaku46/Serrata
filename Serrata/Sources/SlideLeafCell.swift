@@ -10,7 +10,8 @@ import UIKit
 import Kingfisher
 
 public protocol SlideLeafCellDelegate: class {
-    func slideLeafScrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    func slideLeafScrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?)
+    func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat)
     func longPressImageView()
 }
 
@@ -60,7 +61,7 @@ open class SlideLeafCell: UICollectionViewCell {
 
     open func configure(slideLeaf: SlideLeaf) {
         if let image = slideLeaf.image {
-            setImage(image)
+            setImage(image, animated: false)
 
         } else if let url = slideLeaf.urlString {
             activityIndicatorView.startAnimating()
@@ -70,7 +71,7 @@ open class SlideLeafCell: UICollectionViewCell {
                 guard let me = self, let image = image else { return }
                 me.activityIndicatorView.isHidden = true
                 me.activityIndicatorView.stopAnimating()
-                me.setImage(image)
+                me.setImage(image, animated: true)
             }
         }
     }
@@ -89,13 +90,17 @@ open class SlideLeafCell: UICollectionViewCell {
         scrollView.setZoomScale(1, animated: false)
     }
 
-    private func setImage(_ image: UIImage) {
+    private func setImage(_ image: UIImage, animated: Bool) {
         imageView.image = image
         calcImageViewFrame(image)
         scrollView.addSubview(imageView)
-        
-        UIView.animate(withDuration: 0.2) {
-            self.imageView.alpha = 1
+
+        if animated {
+            UIView.animate(withDuration: 0.2) {
+                self.imageView.alpha = 1
+            }
+        } else {
+            imageView.alpha = 1
         }
     }
 
@@ -154,7 +159,11 @@ extension SlideLeafCell: UIScrollViewDelegate {
         updateImageViewToCenter()
     }
 
-    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        delegate?.slideLeafScrollViewWillBeginDragging(scrollView)
+    open func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        delegate?.slideLeafScrollViewWillBeginZooming(scrollView, with: view)
+    }
+
+    open func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        delegate?.slideLeafScrollViewDidEndZooming(scrollView, with: view, atScale: scale)
     }
 }

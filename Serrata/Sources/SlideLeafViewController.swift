@@ -15,11 +15,11 @@ fileprivate enum SlideLeafConst {
 
 @objc public protocol SlideLeafViewControllerDelegate: class {
     func tapImageDetailView(slideLeaf: SlideLeaf, pageIndex: Int)
-    @objc func longPressImageView(slideLeafViewController: SlideLeafViewController, slideLeaf: SlideLeaf, pageIndex: Int)
-    @objc func slideLeafViewControllerDismissed(slideLeaf: SlideLeaf, pageIndex: Int)
+    @objc optional func longPressImageView(slideLeafViewController: SlideLeafViewController, slideLeaf: SlideLeaf, pageIndex: Int)
+    @objc optional func slideLeafViewControllerDismissed(slideLeaf: SlideLeaf, pageIndex: Int)
 }
 
- open class SlideLeafViewController: UIViewController {
+open class SlideLeafViewController: UIViewController {
 
     open override var prefersStatusBarHidden: Bool {
         return true
@@ -112,6 +112,14 @@ fileprivate enum SlideLeafConst {
     private var selectedCell = SlideLeafCell()
     private var isDecideDissmiss = false
 
+
+    /// This method generates SlideLeafViewController.
+    ///
+    /// - Parameters:
+    ///   - leafs: It is array to display it by a slide.
+    ///   - startIndex: It is for initial indication based on array of leafs.
+    ///   - fromImageView: ImageView of the origin of transition. In the case of nil, CrossDissolve.
+    /// - Returns: Instance of SlideLeafViewController.
     open class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UIImageView? = nil) -> SlideLeafViewController {
         let viewController = UIStoryboard(name: "SlideLeafViewController", bundle: Bundle(for: SlideLeafViewController.self))
             .instantiateViewController(withIdentifier: "SlideLeafViewController") as! SlideLeafViewController
@@ -185,7 +193,7 @@ fileprivate enum SlideLeafConst {
                 dismiss(animated: true) {
                     if self.isDecideDissmiss {
                         let leaf = self.slideLeafs[self.pageIndex]
-                        self.delegate?.slideLeafViewControllerDismissed(slideLeaf: leaf, pageIndex: self.pageIndex)
+                        self.delegate?.slideLeafViewControllerDismissed!(slideLeaf: leaf, pageIndex: self.pageIndex)
                     }
                 }
             }
@@ -271,13 +279,19 @@ extension SlideLeafViewController: UIScrollViewDelegate {
 
 extension SlideLeafViewController: SlideLeafCellDelegate {
 
-    open func slideLeafScrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    open func slideLeafScrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         imageDetailView.fadeOut()
+    }
+
+    public func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        if scale == 1 {
+            imageDetailView.fadeIn()
+        }
     }
 
     open func longPressImageView() {
         let leaf = slideLeafs[pageIndex]
-        delegate?.longPressImageView(slideLeafViewController: self, slideLeaf: leaf, pageIndex: pageIndex)
+        delegate?.longPressImageView!(slideLeafViewController: self, slideLeaf: leaf, pageIndex: pageIndex)
     }
 }
 
@@ -286,7 +300,7 @@ extension SlideLeafViewController: ImageDetailViewDelegate {
     open func tapCloseButton() {
         dismiss(animated: true) {
             let leaf = self.slideLeafs[self.pageIndex]
-            self.delegate?.slideLeafViewControllerDismissed(slideLeaf: leaf, pageIndex: self.pageIndex)
+            self.delegate?.slideLeafViewControllerDismissed!(slideLeaf: leaf, pageIndex: self.pageIndex)
         }
     }
 

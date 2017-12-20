@@ -80,7 +80,7 @@ open class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UII
 }
 ```
 
-Details of `SlideLeaf`.
+Details of `SlideLeaf`.
 ```swift
 import UIKit
 

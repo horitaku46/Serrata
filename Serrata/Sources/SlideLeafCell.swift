@@ -42,7 +42,6 @@ open class SlideLeafCell: UICollectionViewCell {
     lazy open var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isUserInteractionEnabled = true
-        imageView.alpha = 0
         return imageView
     }()
 
@@ -61,7 +60,7 @@ open class SlideLeafCell: UICollectionViewCell {
 
     open func configure(slideLeaf: SlideLeaf) {
         if let image = slideLeaf.image {
-            setImage(image, animated: false)
+            setImage(image)
 
         } else if let url = slideLeaf.urlString {
             activityIndicatorView.startAnimating()
@@ -71,7 +70,7 @@ open class SlideLeafCell: UICollectionViewCell {
                 guard let me = self, let image = image else { return }
                 me.activityIndicatorView.isHidden = true
                 me.activityIndicatorView.stopAnimating()
-                me.setImage(image, animated: true)
+                me.setImage(image)
             }
         }
     }
@@ -90,18 +89,10 @@ open class SlideLeafCell: UICollectionViewCell {
         scrollView.setZoomScale(1, animated: false)
     }
 
-    private func setImage(_ image: UIImage, animated: Bool) {
+    private func setImage(_ image: UIImage) {
         imageView.image = image
         calcImageViewFrame(image)
         scrollView.addSubview(imageView)
-
-        if animated {
-            UIView.animate(withDuration: 0.2) {
-                self.imageView.alpha = 1
-            }
-        } else {
-            imageView.alpha = 1
-        }
     }
 
     private func calcImageViewFrame(_ image: UIImage) {

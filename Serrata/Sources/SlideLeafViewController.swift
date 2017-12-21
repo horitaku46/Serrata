@@ -193,7 +193,7 @@ open class SlideLeafViewController: UIViewController {
                 dismiss(animated: true) {
                     if self.isDecideDissmiss {
                         let leaf = self.slideLeafs[self.pageIndex]
-                        self.delegate?.slideLeafViewControllerDismissed!(slideLeaf: leaf, pageIndex: self.pageIndex)
+                        self.delegate?.slideLeafViewControllerDismissed?(slideLeaf: leaf, pageIndex: self.pageIndex)
                     }
                 }
             }
@@ -291,7 +291,7 @@ extension SlideLeafViewController: SlideLeafCellDelegate {
 
     open func longPressImageView() {
         let leaf = slideLeafs[pageIndex]
-        delegate?.longPressImageView!(slideLeafViewController: self, slideLeaf: leaf, pageIndex: pageIndex)
+        delegate?.longPressImageView?(slideLeafViewController: self, slideLeaf: leaf, pageIndex: pageIndex)
     }
 }
 
@@ -300,7 +300,7 @@ extension SlideLeafViewController: ImageDetailViewDelegate {
     open func tapCloseButton() {
         dismiss(animated: true) {
             let leaf = self.slideLeafs[self.pageIndex]
-            self.delegate?.slideLeafViewControllerDismissed!(slideLeaf: leaf, pageIndex: self.pageIndex)
+            self.delegate?.slideLeafViewControllerDismissed?(slideLeaf: leaf, pageIndex: self.pageIndex)
         }
     }
 

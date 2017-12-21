@@ -87,7 +87,7 @@ import UIKit
 public final class SlideLeaf: NSObject {
 
     public var image: UIImage?
-    public var urlString: String?
+    public var imageUrlString: String?
 
     public var title: String
     public var caption: String
@@ -108,11 +108,11 @@ public final class SlideLeaf: NSObject {
     /// If either title and caption is empty, detailView is not displayed.
     ///
     /// - Parameters:
-    ///   - urlString: To read by a slide. It is displayed by Kingfisher.
+    ///   - imageUrlString: To read by a slide. It is displayed by Kingfisher.
     ///   - title: Title of the image.
     ///   - caption: Caption of the image.
-    public init(urlString: String?, title: String = "", caption: String = "") {
-        self.urlString = urlString;
+    public init(imageUrlString: String?, title: String = "", caption: String = "") {
+        self.imageUrlString = imageUrlString
         self.title = title
         self.caption = caption
     }

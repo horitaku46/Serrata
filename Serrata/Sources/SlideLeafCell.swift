@@ -62,7 +62,7 @@ open class SlideLeafCell: UICollectionViewCell {
         if let image = slideLeaf.image {
             setImage(image)
 
-        } else if let url = slideLeaf.urlString {
+        } else if let url = slideLeaf.imageUrlString {
             activityIndicatorView.startAnimating()
             activityIndicatorView.isHidden = false
 

@@ -132,7 +132,7 @@ open class SlideLeafCell: UICollectionViewCell {
 
     @objc private func longPressGesture(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
-        case .ended, .cancelled, .failed:
+        case .began:
             delegate?.longPressImageView()
         default:
             break

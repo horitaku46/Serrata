@@ -15,6 +15,7 @@ open class SerrataInteractor: UIPercentDrivenInteractiveTransition {
 open class SerrataTransition: NSObject {
 
     open static let shared = SerrataTransition()
+    private override init() {}
 
     private(set) var interactor = SerrataInteractor()
     private var fromImageView: UIImageView?
@@ -145,9 +146,9 @@ extension SerrataTransition: UIViewControllerAnimatedTransitioning {
         containerView.insertSubview(dummyClearView, belowSubview: fromViewController.view)
 
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            if self.interactor.hasStarted { // vertical swipe
+            if self.interactor.hasStarted { // vertical swiped
                 dummyClearView.alpha = 0
-            } else { // closeButton
+            } else { // closeButton tapped
                 fromViewController.view.alpha = 0
             }
         }) { _ in

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SlideLeafCell" id="LE0-ut-AZS" customClass="SlideLeafCell" customModule="SerrataSample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DFc-y8-sBr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <gestureRecognizers/>
+                    </scrollView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WYk-0q-NdB">
+                        <rect key="frame" x="177" y="323" width="20" height="20"/>
+                    </activityIndicatorView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="DFc-y8-sBr" secondAttribute="trailing" id="FJ4-c3-dLU"/>
+                <constraint firstItem="WYk-0q-NdB" firstAttribute="centerX" secondItem="LE0-ut-AZS" secondAttribute="centerX" id="MRD-yT-FD1"/>
+                <constraint firstItem="DFc-y8-sBr" firstAttribute="top" secondItem="LE0-ut-AZS" secondAttribute="top" id="Mdc-w0-D6N"/>
+                <constraint firstItem="WYk-0q-NdB" firstAttribute="centerY" secondItem="LE0-ut-AZS" secondAttribute="centerY" id="VbZ-Ir-vtx"/>
+                <constraint firstAttribute="bottom" secondItem="DFc-y8-sBr" secondAttribute="bottom" id="eyz-xJ-URI"/>
+                <constraint firstItem="DFc-y8-sBr" firstAttribute="leading" secondItem="LE0-ut-AZS" secondAttribute="leading" id="ytc-JK-7sx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="oku-fY-3lN"/>
+            <connections>
+                <outlet property="activityIndicatorView" destination="WYk-0q-NdB" id="yJh-cG-tpi"/>
+                <outlet property="scrollView" destination="DFc-y8-sBr" id="7s0-LH-kSy"/>
+            </connections>
+            <point key="canvasLocation" x="133.5" y="-298.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

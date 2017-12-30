@@ -13,13 +13,13 @@
         <!--View Controller-->
         <scene sceneID="Jis-Lf-Mqi">
             <objects>
-                <viewController id="5tF-JC-g6g" customClass="ViewController" customModule="SerrataSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5tF-JC-g6g" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Ys-rc-Lum">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DPC-xR-L21">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fd4-5s-gDM">
                                     <size key="itemSize" width="50" height="50"/>
@@ -35,7 +35,7 @@
                             <constraint firstItem="DPC-xR-L21" firstAttribute="leading" secondItem="vio-3j-Jp5" secondAttribute="leading" id="9eV-O7-NEi"/>
                             <constraint firstItem="DPC-xR-L21" firstAttribute="bottom" secondItem="vio-3j-Jp5" secondAttribute="bottom" id="BzH-Yd-ukZ"/>
                             <constraint firstItem="DPC-xR-L21" firstAttribute="trailing" secondItem="vio-3j-Jp5" secondAttribute="trailing" id="Tsb-0c-NuV"/>
-                            <constraint firstItem="DPC-xR-L21" firstAttribute="top" secondItem="vio-3j-Jp5" secondAttribute="top" id="TuQ-Xh-Vax"/>
+                            <constraint firstItem="DPC-xR-L21" firstAttribute="top" secondItem="5Ys-rc-Lum" secondAttribute="top" id="TuQ-Xh-Vax"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vio-3j-Jp5"/>
                     </view>

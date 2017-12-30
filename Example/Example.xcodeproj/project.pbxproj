@@ -16,7 +16,6 @@
 		619947CF1FE2691B0056FE48 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619947C91FE2691A0056FE48 /* DetailViewController.swift */; };
 		619947D01FE2691B0056FE48 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619947CA1FE2691A0056FE48 /* ViewController.storyboard */; };
 		619947D11FE2691B0056FE48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619947CB1FE2691A0056FE48 /* ViewController.swift */; };
-		619947E41FE26B8C0056FE48 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619947E31FE26B8C0056FE48 /* Kingfisher.framework */; };
 		619947F71FE2C5AF0056FE48 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619947ED1FE2C5AF0056FE48 /* UIButtonExtension.swift */; };
 		619947F81FE2C5AF0056FE48 /* SlideLeafViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619947EE1FE2C5AF0056FE48 /* SlideLeafViewController.storyboard */; };
 		619947F91FE2C5AF0056FE48 /* SlideLeafCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619947EF1FE2C5AF0056FE48 /* SlideLeafCell.xib */; };
@@ -26,6 +25,7 @@
 		619947FD1FE2C5AF0056FE48 /* SlideLeafCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619947F31FE2C5AF0056FE48 /* SlideLeafCell.swift */; };
 		619947FE1FE2C5AF0056FE48 /* SerrataTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619947F41FE2C5AF0056FE48 /* SerrataTransition.swift */; };
 		619947FF1FE2C5AF0056FE48 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 619947F61FE2C5AF0056FE48 /* Images.xcassets */; };
+		61BEC27C1FF73B1400D94530 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619947E31FE26B8C0056FE48 /* Kingfisher.framework */; };
 		61EDCCD71FE572C00080872B /* image8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 61EDCCC31FE572C00080872B /* image8.jpg */; };
 		61EDCCD81FE572C00080872B /* image9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 61EDCCC41FE572C00080872B /* image9.jpg */; };
 		61EDCCD91FE572C00080872B /* image14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 61EDCCC51FE572C00080872B /* image14.jpg */; };
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				619947E41FE26B8C0056FE48 /* Kingfisher.framework in Frameworks */,
+				61BEC27C1FF73B1400D94530 /* Kingfisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,7 +515,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TakumaHoriuchi.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -535,7 +535,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TakumaHoriuchi.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";

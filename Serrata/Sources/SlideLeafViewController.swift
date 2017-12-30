@@ -112,7 +112,6 @@ open class SlideLeafViewController: UIViewController {
     private var selectedCell = SlideLeafCell()
     private var isDecideDissmiss = false
 
-
     /// This method generates SlideLeafViewController.
     ///
     /// - Parameters:

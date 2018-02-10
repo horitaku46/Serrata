@@ -14,9 +14,6 @@ open class SerrataInteractor: UIPercentDrivenInteractiveTransition {
 
 open class SerrataTransition: NSObject {
 
-    open static let shared = SerrataTransition()
-    private override init() {}
-
     private(set) var interactor = SerrataInteractor()
     private var fromImageView: UIImageView?
     private var isPresent = true

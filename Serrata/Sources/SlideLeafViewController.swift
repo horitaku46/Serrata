@@ -94,7 +94,7 @@ open class SlideLeafViewController: UIViewController {
     private var isShouldAutorotate = true
     private var isPrefersHomeIndicatorAutoHidden = false
 
-    private var serrataTransition = SerrataTransition.shared
+    private var serrataTransition = SerrataTransition()
 
     private var slideLeafs = [SlideLeaf]()
     private var pageIndex = 0

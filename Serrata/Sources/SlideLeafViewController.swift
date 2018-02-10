@@ -105,8 +105,8 @@ open class SlideLeafViewController: UIViewController {
         return nil
     }()
 
-    private var originPanImageViewCenterX: CGFloat = 0
-    private var panImageViewCenterX: CGFloat = 0
+    private var originPanImageViewCenterY: CGFloat = 0
+    private var panImageViewCenterY: CGFloat = 0
     private var selectedCell = SlideLeafCell()
     private var isDecideDissmiss = false
 
@@ -182,7 +182,7 @@ open class SlideLeafViewController: UIViewController {
             if let indexPath = collectionView.indexPathForItem(at: point),
                 let cell = collectionView.cellForItem(at: indexPath) as? SlideLeafCell {
                 selectedCell = cell
-                originPanImageViewCenterX = cell.imageView.center.y
+                originPanImageViewCenterY = cell.imageView.center.y
                 serrataTransition.interactor.hasStarted = true
 
                 dismiss(animated: true) {
@@ -195,11 +195,11 @@ open class SlideLeafViewController: UIViewController {
 
         case .changed:
             let translation = sender.translation(in: view)
-            panImageViewCenterX = selectedCell.imageView.center.y + translation.y
-            selectedCell.imageView.center.y = panImageViewCenterX
+            panImageViewCenterY = selectedCell.imageView.center.y + translation.y
+            selectedCell.imageView.center.y = panImageViewCenterY
             sender.setTranslation(.zero, in: view)
 
-            let vertivalMovement = originPanImageViewCenterX - panImageViewCenterX
+            let vertivalMovement = originPanImageViewCenterY - panImageViewCenterY
             /// 0.0 <-> 1.0
             let verticalPercent = fabs(vertivalMovement / view.frame.height)
             serrataTransition.interactor.update(verticalPercent)
@@ -210,7 +210,7 @@ open class SlideLeafViewController: UIViewController {
             serrataTransition.interactor.hasStarted = false
 
             let velocityY = fabs(sender.velocity(in: view).y)
-            let isScrollUp = (originPanImageViewCenterX - panImageViewCenterX) > 0
+            let isScrollUp = (originPanImageViewCenterY - panImageViewCenterY) > 0
 
             if velocityY > 800 {
                 view.isUserInteractionEnabled = false
@@ -230,7 +230,7 @@ open class SlideLeafViewController: UIViewController {
 
                 UIView.animate(withDuration: 0.3) {
                     self.rotationBlackImageView.alpha = 1
-                    self.selectedCell.imageView.center.y = self.originPanImageViewCenterX
+                    self.selectedCell.imageView.center.y = self.originPanImageViewCenterY
                 }
             }
 

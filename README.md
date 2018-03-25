@@ -49,6 +49,7 @@ github "horitaku46/Serrata"
 **See [Example](https://github.com/horitaku46/Serrata/tree/master/Example), for more details.**
 
 How to use in Example.
+
 ```swift
 guard let selectedCell = collectionView.cellForItem(at: indexPath) as? ImageCell else {
     return
@@ -67,6 +68,7 @@ present(slideImageViewController, animated: true, completion: nil)
 ```
 
 Details of `SlideLeafViewController.make()`.
+
 ```swift
 /// This method generates SlideLeafViewController.
 ///
@@ -81,6 +83,7 @@ open class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UII
 ```
 
 Details of `SlideLeaf`.
+
 ```swift
 import UIKit
 
@@ -121,6 +124,7 @@ public final class SlideLeaf: NSObject {
 
 #### delegate
 Detail of `SlideLeafViewControllerDelegate`.
+
 ```swift
 extension ViewController: SlideLeafViewControllerDelegate {
 

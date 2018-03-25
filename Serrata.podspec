@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => "MIT", :file => "./LICENSE" }
   s.author           = { "Takuma Horiuchi" => "horitaku46@gmail.com" }
   s.social_media_url = "https://twitter.com/horitaku46"
-  s.platform         = :ios, "10.0"
+  s.platform         = :ios, "11.0"
   s.source           = { :git => "https://github.com/horitaku46/Serrata.git", :tag => "#{s.version}" }
   s.source_files     = "Serrata/Sources/*.{swift}"
   s.resources        = "Serrata/**/*.{storyboard,xib,xcassets}"

@@ -125,7 +125,6 @@ open class SlideLeafCell: UICollectionViewCell {
             let zoomRect = CGRect(origin: location, size: .zero)
             scrollView.zoom(to: zoomRect, animated: true)
             updateImageViewToCenter()
-
         } else {
             scrollView.setZoomScale(1, animated: true)
         }

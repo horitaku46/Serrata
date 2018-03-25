@@ -173,6 +173,7 @@ open class SlideLeafViewController: UIViewController {
     }
 
     @IBAction private func handleTapGesture(_ sender: Any) {
+        getCurrentCell().scrollView.setZoomScale(1, animated: true)
         imageDetailView.isFadeOut ? imageDetailView.fadeIn() : imageDetailView.fadeOut()
         isPrefersHomeIndicatorAutoHidden = imageDetailView.isFadeOut ? true : false
         setNeedsUpdateOfHomeIndicatorAutoHidden()
@@ -186,18 +187,15 @@ open class SlideLeafViewController: UIViewController {
             isShouldAutorotate = false
             imageDetailView.fadeOut()
 
-            let point = sender.location(in: collectionView)
-            if let indexPath = collectionView.indexPathForItem(at: point),
-                let cell = collectionView.cellForItem(at: indexPath) as? SlideLeafCell {
-                selectedCell = cell
-                originPanImageViewCenterY = cell.imageView.center.y
-                serrataTransition.interactor.hasStarted = true
+            let cell = getCurrentCell()
+            selectedCell = cell
+            originPanImageViewCenterY = cell.imageView.center.y
+            serrataTransition.interactor.hasStarted = true
 
-                dismiss(animated: true) {
-                    if self.isDecideDissmiss {
-                        let leaf = self.slideLeafs[self.pageIndex]
-                        self.delegate?.slideLeafViewControllerDismissed?(slideLeaf: leaf, pageIndex: self.pageIndex)
-                    }
+            dismiss(animated: true) {
+                if self.isDecideDissmiss {
+                    let leaf = self.slideLeafs[self.pageIndex]
+                    self.delegate?.slideLeafViewControllerDismissed?(slideLeaf: leaf, pageIndex: self.pageIndex)
                 }
             }
 
@@ -262,6 +260,14 @@ open class SlideLeafViewController: UIViewController {
             let caption = slideLeafs[pageIndex].caption
             imageDetailView.setDetail(title, caption)
         }
+    }
+
+    private func getCurrentCell() -> SlideLeafCell {
+        let indexPath = IndexPath(row: pageIndex, section: 0)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? SlideLeafCell else {
+            return SlideLeafCell()
+        }
+        return cell
     }
 }
 

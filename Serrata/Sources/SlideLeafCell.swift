@@ -12,6 +12,7 @@ import Kingfisher
 public protocol SlideLeafCellDelegate: class {
     func slideLeafScrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?)
     func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat)
+    func slideLeafScrollViewDidZoom(_ scrolView: UIScrollView)
     func longPressImageView()
 }
 
@@ -144,6 +145,7 @@ extension SlideLeafCell: UIScrollViewDelegate {
     }
 
     open func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        delegate?.slideLeafScrollViewDidZoom(scrollView)
         updateImageViewToCenter()
     }
 

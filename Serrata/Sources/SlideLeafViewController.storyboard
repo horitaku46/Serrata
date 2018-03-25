@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -134,6 +133,7 @@
                         <outlet property="collectionViewTrailingConstraint" destination="Gp0-V9-vXU" id="pTg-54-y5W"/>
                         <outlet property="flowLayout" destination="ilX-oe-BaD" id="87Y-aQ-0s2"/>
                         <outlet property="imageDetailView" destination="AyP-lt-CrY" id="ehV-ed-W3O"/>
+                        <outlet property="panGesture" destination="Mxf-wT-zDF" id="Mfp-31-GwZ"/>
                         <outlet property="rotationBlackImageView" destination="skY-HS-mXg" id="AYS-j7-YnQ"/>
                         <outlet property="singleTapGesture" destination="g9P-OT-Tlv" id="xjJ-cb-j08"/>
                     </connections>

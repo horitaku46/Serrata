@@ -83,6 +83,8 @@ open class SlideLeafViewController: UIViewController {
         }
     }
 
+    @IBOutlet private var panGesture: UIPanGestureRecognizer!
+
     @IBOutlet private var singleTapGesture: UITapGestureRecognizer!
 
     @IBOutlet weak private var imageDetailView: ImageDetailView! {
@@ -164,6 +166,8 @@ open class SlideLeafViewController: UIViewController {
             }) { _ in
                 self.rotationBlackImageView.image = nil
                 self.collectionView.isHidden = false
+                self.collectionView.isScrollEnabled = true
+                self.panGesture.isEnabled = true
             }
         }
     }
@@ -281,10 +285,16 @@ extension SlideLeafViewController: SlideLeafCellDelegate {
         imageDetailView.fadeOut()
     }
 
-    public func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    open func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         if scale == 1 {
             imageDetailView.fadeIn()
         }
+    }
+
+    open func slideLeafScrollViewDidZoom(_ scrolView: UIScrollView) {
+        let isEnabled = scrolView.zoomScale == 1
+        collectionView.isScrollEnabled = isEnabled
+        panGesture.isEnabled = isEnabled
     }
 
     open func longPressImageView() {

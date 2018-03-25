@@ -22,7 +22,7 @@ Serrata is a UI library that allows you to intuitively view images.
 [Kingfisher](https://github.com/onevcat/Kingfisher) is a lightweight and pure Swift implemented library.  
 It is used in the Serrata. I sincerely respect Kingfisher!
 
-- Support iPhone, iPad and iPhoneX! 🎉
+- Support iPhone, iPad and iPhone X! 🎉
 - It is the almost same as Image Viewer of Twitter and LINE.😎
 
 ## Requirements
@@ -42,7 +42,7 @@ pod 'Serrata'
 
 ### Carthage
 ```ruby
-pod "horitaku46/Serrata"
+github "horitaku46/Serrata"
 ```
 
 ## Usage

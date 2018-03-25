@@ -11,6 +11,8 @@ import UIKit
 fileprivate enum SlideLeafConst {
     static let minimumLineSpacing: CGFloat = 20
     static let cellBothEndSpacing: CGFloat = minimumLineSpacing / 2
+    static let maxSwipeCancelVelovityY: CGFloat = 800
+    static let imageTransitionDuration = 0.3
 }
 
 @objc public protocol SlideLeafViewControllerDelegate: class {
@@ -173,6 +175,8 @@ open class SlideLeafViewController: UIViewController {
     }
 
     @IBAction private func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+        guard let view = sender.view else { return }
+
         switch sender.state {
         case .began:
             isShouldAutorotate = false
@@ -209,15 +213,14 @@ open class SlideLeafViewController: UIViewController {
             isShouldAutorotate = true
             serrataTransition.interactor.hasStarted = false
 
-            let velocityY = fabs(sender.velocity(in: view).y)
-            let isScrollUp = (originPanImageViewCenterY - panImageViewCenterY) > 0
-
-            if velocityY > 800 {
+            let velocityY = sender.velocity(in: view).y
+            if fabs(velocityY) > SlideLeafConst.maxSwipeCancelVelovityY {
                 view.isUserInteractionEnabled = false
                 isDecideDissmiss = true
 
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: SlideLeafConst.imageTransitionDuration, animations: {
                     self.rotationBlackImageView.alpha = 0
+                    let isScrollUp = velocityY < 0
                     let height = self.view.frame.height
                     self.selectedCell.frame.origin.y = isScrollUp ? -height : height
                 }, completion: { _ in
@@ -228,7 +231,7 @@ open class SlideLeafViewController: UIViewController {
                 serrataTransition.interactor.cancel()
                 imageDetailView.fadeIn()
 
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: SlideLeafConst.imageTransitionDuration) {
                     self.rotationBlackImageView.alpha = 1
                     self.selectedCell.imageView.center.y = self.originPanImageViewCenterY
                 }

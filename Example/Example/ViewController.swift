@@ -71,7 +71,7 @@ extension ViewController: SlideLeafViewControllerDelegate {
         print(slideLeaf)
 
         let viewController = DetailViewController.make(detailTitle: slideLeaf.title)
-        self.navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.show(viewController, sender: nil)
     }
 
     func longPressImageView(slideLeafViewController: SlideLeafViewController, slideLeaf: SlideLeaf, pageIndex: Int) {

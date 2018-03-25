@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate enum SlideLeafConst {
+private enum SlideLeafConst {
     static let minimumLineSpacing: CGFloat = 20
     static let cellBothEndSpacing: CGFloat = minimumLineSpacing / 2
     static let maxSwipeCancelVelovityY: CGFloat = 800
@@ -16,26 +16,26 @@ fileprivate enum SlideLeafConst {
 }
 
 @objc public protocol SlideLeafViewControllerDelegate: class {
-    func tapImageDetailView(slideLeaf: SlideLeaf, pageIndex: Int)
+    @objc optional func tapImageDetailView(slideLeaf: SlideLeaf, pageIndex: Int)
     @objc optional func longPressImageView(slideLeafViewController: SlideLeafViewController, slideLeaf: SlideLeaf, pageIndex: Int)
     @objc optional func slideLeafViewControllerDismissed(slideLeaf: SlideLeaf, pageIndex: Int)
 }
 
-open class SlideLeafViewController: UIViewController {
+public final class SlideLeafViewController: UIViewController {
 
-    open override var prefersStatusBarHidden: Bool {
+    public override var prefersStatusBarHidden: Bool {
         return true
     }
 
-    open override func prefersHomeIndicatorAutoHidden() -> Bool {
+    public override func prefersHomeIndicatorAutoHidden() -> Bool {
         return isPrefersHomeIndicatorAutoHidden
     }
 
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
-    open override var shouldAutorotate: Bool {
+    public override var shouldAutorotate: Bool {
         return isShouldAutorotate
     }
 
@@ -93,7 +93,7 @@ open class SlideLeafViewController: UIViewController {
         }
     }
 
-    weak open var delegate: SlideLeafViewControllerDelegate?
+    weak public var delegate: SlideLeafViewControllerDelegate?
 
     private var isShouldAutorotate = true
     private var isPrefersHomeIndicatorAutoHidden = false
@@ -121,7 +121,7 @@ open class SlideLeafViewController: UIViewController {
     ///   - startIndex: It is for initial indication based on array of leafs.
     ///   - fromImageView: ImageView of the origin of transition. In the case of nil, CrossDissolve.
     /// - Returns: Instance of SlideLeafViewController.
-    open class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UIImageView? = nil) -> SlideLeafViewController {
+    public class func make(leafs: [SlideLeaf], startIndex: Int = 0, fromImageView: UIImageView? = nil) -> SlideLeafViewController {
         let viewController = UIStoryboard(name: "SlideLeafViewController", bundle: Bundle(for: SlideLeafViewController.self))
             .instantiateViewController(withIdentifier: "SlideLeafViewController") as! SlideLeafViewController
         viewController.transitioningDelegate = viewController.serrataTransition
@@ -131,7 +131,7 @@ open class SlideLeafViewController: UIViewController {
         return viewController
     }
 
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
 
@@ -141,17 +141,17 @@ open class SlideLeafViewController: UIViewController {
         }
     }
 
-    open override func viewWillLayoutSubviews() {
+    public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
     }
 
-    open override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         firstSetImageDetail?()
     }
 
-    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         let indexPath = IndexPath(row: pageIndex, section: 0)
@@ -273,11 +273,11 @@ open class SlideLeafViewController: UIViewController {
 
 extension SlideLeafViewController: UIScrollViewDelegate {
 
-    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isShouldAutorotate = false
     }
 
-    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let contentOffSetX = scrollView.contentOffset.x
         let scrollViewWidth = scrollView.frame.width
         let newPageIndex = Int(round(contentOffSetX / scrollViewWidth))
@@ -291,23 +291,23 @@ extension SlideLeafViewController: UIScrollViewDelegate {
 
 extension SlideLeafViewController: SlideLeafCellDelegate {
 
-    open func slideLeafScrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    public func slideLeafScrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         imageDetailView.fadeOut()
     }
 
-    open func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    public func slideLeafScrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         if scale == 1 {
             imageDetailView.fadeIn()
         }
     }
 
-    open func slideLeafScrollViewDidZoom(_ scrolView: UIScrollView) {
+    public func slideLeafScrollViewDidZoom(_ scrolView: UIScrollView) {
         let isEnabled = scrolView.zoomScale == 1
         collectionView.isScrollEnabled = isEnabled
         panGesture.isEnabled = isEnabled
     }
 
-    open func longPressImageView() {
+    public func longPressImageView() {
         let leaf = slideLeafs[pageIndex]
         delegate?.longPressImageView?(slideLeafViewController: self, slideLeaf: leaf, pageIndex: pageIndex)
     }
@@ -315,24 +315,24 @@ extension SlideLeafViewController: SlideLeafCellDelegate {
 
 extension SlideLeafViewController: ImageDetailViewDelegate {
 
-    open func tapCloseButton() {
+    public func tapCloseButton() {
         dismiss(animated: true) {
             let leaf = self.slideLeafs[self.pageIndex]
             self.delegate?.slideLeafViewControllerDismissed?(slideLeaf: leaf, pageIndex: self.pageIndex)
         }
     }
 
-    open func tapDetailView() {
+    public func tapDetailView() {
         dismiss(animated: true) {
             let leaf = self.slideLeafs[self.pageIndex]
-            self.delegate?.tapImageDetailView(slideLeaf: leaf, pageIndex: self.pageIndex)
+            self.delegate?.tapImageDetailView?(slideLeaf: leaf, pageIndex: self.pageIndex)
         }
     }
 }
 
 extension SlideLeafViewController: UICollectionViewDelegate {
 
-    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let displayCell = cell as? SlideLeafCell else {
             return
         }
@@ -347,11 +347,11 @@ extension SlideLeafViewController: UICollectionViewDelegate {
 
 extension SlideLeafViewController: UICollectionViewDataSource {
 
-    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return slideLeafs.count
     }
 
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SlideLeafCell", for: indexPath) as! SlideLeafCell
         cell.resetImageView()
         cell.configure(slideLeaf: slideLeafs[indexPath.row])
@@ -361,7 +361,7 @@ extension SlideLeafViewController: UICollectionViewDataSource {
 
 extension SlideLeafViewController: UICollectionViewDelegateFlowLayout {
 
-    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return UIScreen.main.bounds.size
     }
 }

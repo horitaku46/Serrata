@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate enum ImageDetailConst {
+private enum ImageDetailConst {
     static let maxAlpha: CGFloat = 0.4
 
     static let fadeInCloseButtonTop: CGFloat = 35
@@ -23,11 +23,11 @@ public protocol ImageDetailViewDelegate: class {
     func tapDetailView()
 }
 
-open class ImageDetailView: UIView {
+public final class ImageDetailView: UIView {
 
-    open var isFadeOut = false
+    public var isFadeOut = false
 
-    open weak var delegate: ImageDetailViewDelegate?
+    public weak var delegate: ImageDetailViewDelegate?
 
     @IBOutlet weak private var closeButtonTopConstraint: NSLayoutConstraint! // default = 35
     @IBOutlet weak private var detailViewBottomConstraint: NSLayoutConstraint! // default = 0
@@ -78,12 +78,12 @@ open class ImageDetailView: UIView {
         }
     }
 
-    open override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
     }
 
-    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let hitView = super.hitTest(point, with: event)
         if self == hitView {
             return nil
@@ -99,11 +99,11 @@ open class ImageDetailView: UIView {
         delegate?.tapDetailView()
     }
 
-    open func disabledDetailButton() {
+    public func disabledDetailButton() {
         detailButton.isEnabled = false
     }
 
-    open func setDetail(_ title: String, _ caption: String) {
+    public func setDetail(_ title: String, _ caption: String) {
         if title != "" && caption != "" {
             titleLabel.text = title
             captionLabel.text = caption
@@ -112,7 +112,7 @@ open class ImageDetailView: UIView {
         }
     }
 
-    open func fadeOut(with duration: TimeInterval = 0.2) {
+    public func fadeOut(with duration: TimeInterval = 0.2) {
         if !isFadeOut {
             isFadeOut = true
             closeButtonTopConstraint.constant = ImageDetailConst.fadeOutCloseButtonTop
@@ -130,7 +130,7 @@ open class ImageDetailView: UIView {
         }
     }
 
-    open func fadeIn(with duration: TimeInterval = 0.2) {
+    public func fadeIn(with duration: TimeInterval = 0.2) {
         if isFadeOut {
             isFadeOut = false
             closeButtonTopConstraint.constant = ImageDetailConst.fadeInCloseButtonTop

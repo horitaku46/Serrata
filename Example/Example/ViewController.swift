@@ -85,7 +85,7 @@ extension ViewController: SlideLeafViewControllerDelegate {
         print(pageIndex)
 
         let indexPath = IndexPath(row: pageIndex, section: 0)
-        self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
 }
 

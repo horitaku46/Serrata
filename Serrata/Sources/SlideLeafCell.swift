@@ -16,9 +16,9 @@ public protocol SlideLeafCellDelegate: class {
     func longPressImageView()
 }
 
-open class SlideLeafCell: UICollectionViewCell {
+public final class SlideLeafCell: UICollectionViewCell {
 
-    @IBOutlet weak open var scrollView: UIScrollView! {
+    @IBOutlet weak public var scrollView: UIScrollView! {
         didSet {
             scrollView.maximumZoomScale = 3
             scrollView.minimumZoomScale = 1
@@ -36,17 +36,17 @@ open class SlideLeafCell: UICollectionViewCell {
         }
     }
 
-    weak open var delegate: SlideLeafCellDelegate?
+    weak public var delegate: SlideLeafCellDelegate?
 
-    open var doubleTapGesture: UITapGestureRecognizer!
+    public var doubleTapGesture: UITapGestureRecognizer!
 
-    lazy open var imageView: UIImageView = {
+    lazy public var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
-    open override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
         contentView.backgroundColor = .clear
@@ -59,7 +59,7 @@ open class SlideLeafCell: UICollectionViewCell {
         imageView.addGestureRecognizer(longPressGesture)
     }
 
-    open func configure(slideLeaf: SlideLeaf) {
+    public func configure(slideLeaf: SlideLeaf) {
         if let image = slideLeaf.image {
             setImage(image)
 
@@ -76,7 +76,7 @@ open class SlideLeafCell: UICollectionViewCell {
         }
     }
 
-    open override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
 
         if let image = imageView.image {
@@ -85,7 +85,7 @@ open class SlideLeafCell: UICollectionViewCell {
         }
     }
 
-    open func resetImageView() {
+    public func resetImageView() {
         imageView.image = nil
         scrollView.setZoomScale(1, animated: false)
     }
@@ -139,20 +139,20 @@ open class SlideLeafCell: UICollectionViewCell {
 
 extension SlideLeafCell: UIScrollViewDelegate {
 
-    open func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
 
-    open func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         delegate?.slideLeafScrollViewDidZoom(scrollView)
         updateImageViewToCenter()
     }
 
-    open func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         delegate?.slideLeafScrollViewWillBeginZooming(scrollView, with: view)
     }
 
-    open func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         delegate?.slideLeafScrollViewDidEndZooming(scrollView, with: view, atScale: scale)
     }
 }

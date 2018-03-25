@@ -8,45 +8,45 @@
 
 import UIKit
 
-open class SerrataInteractor: UIPercentDrivenInteractiveTransition {
-    open var hasStarted = false
+public final class SerrataInteractor: UIPercentDrivenInteractiveTransition {
+    public var hasStarted = false
 }
 
-open class SerrataTransition: NSObject {
+public final class SerrataTransition: NSObject {
 
     private(set) var interactor = SerrataInteractor()
     private var fromImageView: UIImageView?
     private var isPresent = true
 
-    open func setFromImageView(_ fromImageView: UIImageView?) {
+    public func setFromImageView(_ fromImageView: UIImageView?) {
         self.fromImageView = fromImageView
     }
 }
 
 extension SerrataTransition: UIViewControllerTransitioningDelegate {
 
-    open func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresent = true
         return self
     }
 
-    open func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresent = false
         return self
     }
 
-    open func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
 }
 
 extension SerrataTransition: UIViewControllerAnimatedTransitioning {
 
-    open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
 
-    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresent {
             fromImageView != nil ? fromImageTransition(transitionContext) : crossDissolveTransition(transitionContext)
         } else {

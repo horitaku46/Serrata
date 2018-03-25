@@ -267,15 +267,19 @@ open class SlideLeafViewController: UIViewController {
 
 extension SlideLeafViewController: UIScrollViewDelegate {
 
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isShouldAutorotate = false
+    }
+
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let contentOffSetX = scrollView.contentOffset.x
         let scrollViewWidth = scrollView.frame.width
         let newPageIndex = Int(round(contentOffSetX / scrollViewWidth))
-
         if pageIndex != newPageIndex {
             setImageDetailText(newPageIndex)
             pageIndex = newPageIndex
         }
+        isShouldAutorotate = true
     }
 }
 

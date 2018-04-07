@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		61BEC27D1FF754CF00D94530 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FF1E431FE632DC00C44678 /* Kingfisher.framework */; };
+		61DE4EE920787A07009B0A17 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FF1E431FE632DC00C44678 /* Kingfisher.framework */; };
 		61FF1E371FE62E6300C44678 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FF1E2A1FE62E6300C44678 /* UIButtonExtension.swift */; };
 		61FF1E381FE62E6300C44678 /* SlideLeafViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61FF1E2B1FE62E6300C44678 /* SlideLeafViewController.storyboard */; };
 		61FF1E391FE62E6300C44678 /* SlideLeafCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FF1E2C1FE62E6300C44678 /* SlideLeafCell.xib */; };
@@ -22,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		619947651FE2473A0056FE48 /* Serrata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Serrata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61DE4EE720787981009B0A17 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Example/Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		61FF1E2A1FE62E6300C44678 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		61FF1E2B1FE62E6300C44678 /* SlideLeafViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SlideLeafViewController.storyboard; sourceTree = "<group>"; };
 		61FF1E2C1FE62E6300C44678 /* SlideLeafCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideLeafCell.xib; sourceTree = "<group>"; };
@@ -41,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61BEC27D1FF754CF00D94530 /* Kingfisher.framework in Frameworks */,
+				61DE4EE920787A07009B0A17 /* Kingfisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +103,7 @@
 		61FF1E421FE632DC00C44678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61DE4EE720787981009B0A17 /* Kingfisher.framework */,
 				61FF1E431FE632DC00C44678 /* Kingfisher.framework */,
 			);
 			name = Frameworks;
@@ -145,7 +147,7 @@
 		6199475C1FE2473A0056FE48 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Takuma Horiuchi";
 				TargetAttributes = {
 					619947641FE2473A0056FE48 = {
@@ -216,6 +218,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -223,6 +226,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -276,6 +280,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -283,6 +288,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -328,6 +334,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Example/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Serrata/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -354,6 +361,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Example/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Serrata/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

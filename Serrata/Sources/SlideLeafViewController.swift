@@ -207,7 +207,7 @@ public final class SlideLeafViewController: UIViewController {
 
             let vertivalMovement = originPanImageViewCenterY - panImageViewCenterY
             /// 0.0 <-> 1.0
-            let verticalPercent = fabs(vertivalMovement / view.frame.height)
+            let verticalPercent = abs(vertivalMovement / view.frame.height)
             serrataTransition.interactor.update(verticalPercent)
             rotationBlackImageView.alpha = 1 - verticalPercent
 
@@ -216,7 +216,7 @@ public final class SlideLeafViewController: UIViewController {
             serrataTransition.interactor.hasStarted = false
 
             let velocityY = sender.velocity(in: view).y
-            if fabs(velocityY) > SlideLeafConst.maxSwipeCancelVelovityY {
+            if abs(velocityY) > SlideLeafConst.maxSwipeCancelVelovityY {
                 view.isUserInteractionEnabled = false
                 isDecideDissmiss = true
 

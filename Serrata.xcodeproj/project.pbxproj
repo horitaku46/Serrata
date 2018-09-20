@@ -152,6 +152,7 @@
 				TargetAttributes = {
 					619947641FE2473A0056FE48 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -343,7 +344,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = TakumaHoriuchi.Serrata;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -370,7 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = TakumaHoriuchi.Serrata;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

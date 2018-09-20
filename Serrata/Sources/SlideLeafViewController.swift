@@ -27,7 +27,7 @@ public final class SlideLeafViewController: UIViewController {
         return true
     }
 
-    public override func prefersHomeIndicatorAutoHidden() -> Bool {
+    public override var prefersHomeIndicatorAutoHidden: Bool {
         return isPrefersHomeIndicatorAutoHidden
     }
 

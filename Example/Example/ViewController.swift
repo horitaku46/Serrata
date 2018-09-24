@@ -105,8 +105,8 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let isPortraint = UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation)
-        let itemSide: CGFloat = isPortraint ? (collectionView.bounds.width - 1) / 2 : (collectionView.bounds.width - 2) / 3
+        let isPortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let itemSide: CGFloat = isPortrait ? (collectionView.bounds.width - 1) / 2 : (collectionView.bounds.width - 2) / 3
         return CGSize(width: itemSide, height: itemSide)
     }
 }

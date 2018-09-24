@@ -48,7 +48,9 @@ public final class SlideLeafViewController: UIViewController {
             collectionView.showsVerticalScrollIndicator = false
             collectionView.delegate = self
             collectionView.dataSource = self
-            collectionView.contentInsetAdjustmentBehavior = .never
+            if #available(iOS 11.0, *) {
+                collectionView.contentInsetAdjustmentBehavior = .never
+            }
         }
     }
 
@@ -176,7 +178,9 @@ public final class SlideLeafViewController: UIViewController {
         getCurrentCell().scrollView.setZoomScale(1, animated: true)
         imageDetailView.isFadeOut ? imageDetailView.fadeIn() : imageDetailView.fadeOut()
         isPrefersHomeIndicatorAutoHidden = imageDetailView.isFadeOut ? true : false
-        setNeedsUpdateOfHomeIndicatorAutoHidden()
+        if #available(iOS 11.0, *) {
+            setNeedsUpdateOfHomeIndicatorAutoHidden()
+        }
     }
 
     @IBAction private func handlePanGesture(_ sender: UIPanGestureRecognizer) {

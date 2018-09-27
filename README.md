@@ -28,7 +28,7 @@ It is used in the Serrata. I sincerely respect Kingfisher!
 ## Requirements
 
 - Xcode 10.0+
-- iOS 10+
+- iOS 11+
 - Swift 4.2+ (for Swift 4.0 support use v1.0.10)
 
 ## Installation

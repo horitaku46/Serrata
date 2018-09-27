@@ -9,7 +9,7 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
 ## Overview
-You can use it simply by passing the necessary information!  
+You can use it simply by passing the necessary information!
 Serrata is a UI library that allows you to intuitively view images.
 
 <p align="center">
@@ -19,7 +19,7 @@ Serrata is a UI library that allows you to intuitively view images.
 </p>
 
 ## Features
-[Kingfisher](https://github.com/onevcat/Kingfisher) is a lightweight and pure Swift implemented library.  
+[Kingfisher](https://github.com/onevcat/Kingfisher) is a lightweight and pure Swift implemented library.
 It is used in the Serrata. I sincerely respect Kingfisher!
 
 - Support iPhone, iPad and iPhone X! 🎉
@@ -27,9 +27,9 @@ It is used in the Serrata. I sincerely respect Kingfisher!
 
 ## Requirements
 
-- Xcode 9.0+
+- Xcode 10.0+
 - iOS 11+
-- Swift 4.0+
+- Swift 4.2+ (for Swift 4.0 support use v1.0.10)
 
 ## Installation
 #### Caution ⚠️

@@ -31,7 +31,7 @@ public final class SlideLeafCell: UICollectionViewCell {
 
     @IBOutlet weak private var activityIndicatorView: UIActivityIndicatorView! {
         didSet {
-            activityIndicatorView.activityIndicatorViewStyle = .whiteLarge
+            activityIndicatorView.style = .whiteLarge
             activityIndicatorView.isHidden = true
         }
     }

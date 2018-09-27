@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Serrata"
-  s.version      = "1.0.10"
+  s.version      = "1.1.0"
   s.summary      = "Slide image viewer library similar to Twitter and LINE."
   s.description  = <<-DESC
                    You can use it simply by passing the necessary information.

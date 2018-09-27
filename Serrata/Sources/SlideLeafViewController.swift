@@ -27,7 +27,7 @@ public final class SlideLeafViewController: UIViewController {
         return true
     }
 
-    public override func prefersHomeIndicatorAutoHidden() -> Bool {
+    public override var prefersHomeIndicatorAutoHidden: Bool {
         return isPrefersHomeIndicatorAutoHidden
     }
 
@@ -48,7 +48,9 @@ public final class SlideLeafViewController: UIViewController {
             collectionView.showsVerticalScrollIndicator = false
             collectionView.delegate = self
             collectionView.dataSource = self
-            collectionView.contentInsetAdjustmentBehavior = .never
+            if #available(iOS 11.0, *) {
+                collectionView.contentInsetAdjustmentBehavior = .never
+            }
         }
     }
 
@@ -176,7 +178,9 @@ public final class SlideLeafViewController: UIViewController {
         getCurrentCell().scrollView.setZoomScale(1, animated: true)
         imageDetailView.isFadeOut ? imageDetailView.fadeIn() : imageDetailView.fadeOut()
         isPrefersHomeIndicatorAutoHidden = imageDetailView.isFadeOut ? true : false
-        setNeedsUpdateOfHomeIndicatorAutoHidden()
+        if #available(iOS 11.0, *) {
+            setNeedsUpdateOfHomeIndicatorAutoHidden()
+        }
     }
 
     @IBAction private func handlePanGesture(_ sender: UIPanGestureRecognizer) {
@@ -207,7 +211,7 @@ public final class SlideLeafViewController: UIViewController {
 
             let vertivalMovement = originPanImageViewCenterY - panImageViewCenterY
             /// 0.0 <-> 1.0
-            let verticalPercent = fabs(vertivalMovement / view.frame.height)
+            let verticalPercent = abs(vertivalMovement / view.frame.height)
             serrataTransition.interactor.update(verticalPercent)
             rotationBlackImageView.alpha = 1 - verticalPercent
 
@@ -216,7 +220,7 @@ public final class SlideLeafViewController: UIViewController {
             serrataTransition.interactor.hasStarted = false
 
             let velocityY = sender.velocity(in: view).y
-            if fabs(velocityY) > SlideLeafConst.maxSwipeCancelVelovityY {
+            if abs(velocityY) > SlideLeafConst.maxSwipeCancelVelovityY {
                 view.isUserInteractionEnabled = false
                 isDecideDissmiss = true
 
